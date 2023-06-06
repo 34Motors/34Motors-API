@@ -26,14 +26,14 @@ model User {
   description String?
   phone       String    @unique @db.VarChar(11)
   isSeller    Boolean   @default(false)
-  adress      Adress?
+  adress      Address?
   cars        Car[]
   comments    Comment[]
 
   @@map("users")
 }
 
-model Adress {
+model Address {
   id         Int    @id @default(autoincrement())
   cep        String @db.VarChar(8)
   state      String @db.VarChar(2)
@@ -44,7 +44,7 @@ model Adress {
   user       User   @relation(fields: [userId], references: [id])
   userId     Int    @unique
 
-  @@map("adresses")
+  @@map("addresses")
 }
 
 model Car {
