@@ -10,11 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum FuelType {
-  Hibrido
-  Flex
-  Eletrico
-}
+
 
 model User {
   id          Int       @id @default(autoincrement())
@@ -52,7 +48,7 @@ model Car {
   brand       String    @db.VarChar(20)
   model       String    @db.VarChar(50)
   year        String    @db.VarChar(4)
-  fuelType    FuelType
+  fuelType    String
   quilometers String    @db.VarChar(6)
   color       String    @db.VarChar(16)
   fipePrice   String
