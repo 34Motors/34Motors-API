@@ -17,6 +17,12 @@ const createCarBody = z.object({
 
 })
 
+const carEditOmitUserId = createCarBody.omit({
+    userId:true,
+    images:true,
+})
+
+const carEditSchema = carEditOmitUserId.partial()
 
 
-export { createCarBody }
+export { createCarBody, carEditSchema }
