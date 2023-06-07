@@ -1,16 +1,8 @@
 import { prismaClient } from "../../database"
-import { AppError } from "../../errors"
 
-const listCarService = async (id: number) => {
+const listAllCarService = async () => {
 
-    const carExists = await prismaClient.car.findUnique({
-        where: { id }
-    })
-
-    if (!carExists) throw new AppError("car not found", 404)
-
-    const car = await prismaClient.car.findUnique({
-        where: { id },
+    const car = await prismaClient.car.findMany({
         include: {
             user: {
                 select: {
@@ -32,4 +24,4 @@ const listCarService = async (id: number) => {
     return car
 }
 
-export { listCarService }
+export { listAllCarService }
