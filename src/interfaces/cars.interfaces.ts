@@ -1,6 +1,8 @@
 import { z } from "zod";
-import { createCarBody } from "../schemas/cars.schema";
+import { carEditSchema, createCarBody } from "../schemas/cars.schema";
 
 type ICarsBody = z.infer<typeof createCarBody>
 
-export { ICarsBody }
+type ICarsEditedBody = z.infer<typeof carEditSchema>
+
+export { ICarsBody, ICarsEditedBody }
