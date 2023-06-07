@@ -18,8 +18,6 @@ const listCarService = async (id: number) => {
         }
     })
 
-    if (!car) throw new AppError("car not found", 404)
-
     return car
 }
 
