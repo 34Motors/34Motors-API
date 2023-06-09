@@ -2,17 +2,17 @@ import { prismaClient } from "../../database"
 import { AppError } from "../../errors"
 import { ICarsEditedBody } from "../../interfaces/cars.interfaces"
 
-const editCarService = async (data:ICarsEditedBody, id:number) => {
+const editCarService = async (data: ICarsEditedBody, id: number) => {
 
     const carExists = await prismaClient.car.findUnique({
-        where:{ id }
+        where: { id }
     })
 
-    if(!carExists) throw new AppError("car not found", 404)
+    if (!carExists) throw new AppError("car not found", 404)
 
     const editCar = await prismaClient.car.update({
         where: { id },
-        data:{
+        data: {
             brand: data.brand,
             model: data.model,
             year: data.year,

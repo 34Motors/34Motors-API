@@ -10,4 +10,4 @@ const listCarController = async (req: Request, res: Response): Promise<Response>
     return res.status(200).json(car)
 }
 
-export { listCarController }
+export { listCarController  }
