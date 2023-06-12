@@ -22,7 +22,7 @@ model User {
   description String?
   phone       String    @unique @db.VarChar(11)
   isSeller    Boolean   @default(false)
-  adress      Address?
+  address      Address?
   cars        Car[]
   comments    Comment[]
 
