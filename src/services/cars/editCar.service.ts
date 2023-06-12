@@ -9,7 +9,7 @@ const editCarService = async (data:ICarsEditedBody, id:number) => {
     })
 
     if(!carExists) throw new AppError("car not found", 404)
-/*
+
     const editCar = await prismaClient.car.update({
         where: { id },
         data:{
@@ -26,7 +26,7 @@ const editCarService = async (data:ICarsEditedBody, id:number) => {
             published: data.published,
         }
     })
-*/
+
     return "editCar"
 }
 
