@@ -10,8 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
 model User {
   id          Int       @id @default(autoincrement())
   name        String    @db.VarChar(127)
@@ -22,7 +20,7 @@ model User {
   description String?
   phone       String    @unique @db.VarChar(11)
   isSeller    Boolean   @default(false)
-  adress      Address?
+  address     Address?
   cars        Car[]
   comments    Comment[]
 
@@ -30,15 +28,15 @@ model User {
 }
 
 model Address {
-  id         Int    @id @default(autoincrement())
-  cep        String @db.VarChar(8)
-  state      String @db.VarChar(2)
-  city       String @db.VarChar(50)
-  street     String @db.VarChar(127)
-  number     String @db.VarChar(8)
-  complement String @db.VarChar(50)
-  user       User   @relation(fields: [userId], references: [id])
-  userId     Int    @unique
+  id         Int     @id @default(autoincrement())
+  cep        String  @db.VarChar(8)
+  state      String  @db.VarChar(2)
+  city       String  @db.VarChar(50)
+  street     String  @db.VarChar(127)
+  number     String  @db.VarChar(8)
+  complement String? @db.VarChar(50)
+  user       User    @relation(fields: [userId], references: [id])
+  userId     Int     @unique
 
   @@map("addresses")
 }
