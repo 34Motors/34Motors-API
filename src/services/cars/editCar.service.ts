@@ -32,7 +32,7 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
         }
     })
 
-    return "editCar"
+    return editCar
 }
 
 export { editCarService }
