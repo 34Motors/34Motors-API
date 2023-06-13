@@ -1,13 +1,16 @@
+import { hash } from "bcryptjs";
 import { prismaClient } from "../../database";
 import { AppError } from "../../errors";
 import { tUserRequest } from "../../interfaces/users.interfaces";
 
 const createUserService = async (userData: tUserRequest) => {
   try {
+    const hashedPassword = await hash(userData.password, 10)
+
     const newUser = await prismaClient.user.create({
         data: {
           name: userData.name,
-          password: userData.password,
+          password: hashedPassword,
           email: userData.email,
           cpf: userData.cpf,
           phone: userData.phone,
@@ -34,7 +37,7 @@ const createUserService = async (userData: tUserRequest) => {
           id: newUser.id,
         },
         include: {
-          adress: true,
+          address: true,
         },
       });
     
