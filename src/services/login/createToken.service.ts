@@ -5,10 +5,7 @@ import { AppError } from "../../errors";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const createTokenService = async ({
-  email,
-  password,
-}: tLoginRequest): Promise<string> => {
+const createTokenService = async ({ email, password }: tLoginRequest) => {
   const findUser = await prismaClient.user.findFirst({ where: { email } });
 
   if (!findUser) {
@@ -26,7 +23,6 @@ const createTokenService = async ({
     subject: String(findUser.id),
   });
 
-  return token;
+  return { token: token, user: findUser };
 };
-
 export { createTokenService };
