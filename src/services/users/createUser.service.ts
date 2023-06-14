@@ -46,6 +46,7 @@ const createUserService = async (userData: tUserRequest) => {
       });
     
       return returnUser;
+      
   } catch (error) {
     throw new AppError("Try a different CPF, email or phone")
   }
