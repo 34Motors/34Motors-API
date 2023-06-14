@@ -5,7 +5,10 @@ import { AppError } from "../../errors";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const createTokenService = async ({ email, password }: tLoginRequest) => {
+const createTokenService = async ({
+  email,
+  password,
+}: tLoginRequest) => {
   const findUser = await prismaClient.user.findFirst({ where: { email } });
 
   if (!findUser) {
