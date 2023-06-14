@@ -5,9 +5,9 @@ import { createTokenService } from "../../services/login/createToken.service";
 const createLoginController = async (req: Request,res: Response): Promise<Response> => {
   const loginData: tLoginRequest = req.body;
 
-  const token: string = await createTokenService(loginData);
+  const token = await createTokenService(loginData);
 
-  return res.json({ token: token });
+  return res.json(token);
 };
 
 export { createLoginController };
