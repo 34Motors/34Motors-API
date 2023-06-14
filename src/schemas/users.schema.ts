@@ -36,14 +36,14 @@ const createUserBody = z.object({
   cpf: z.string().max(11),
   phone: z.string().max(11),
   birthDate: z.string(),
-  description: z.string().nullable(),
+  description: z.string().optional(),
 
   cep: z.string().max(8),
   state: z.enum(validStates),
   city: z.string().max(50),
   street: z.string().max(127),
   number: z.string().max(8),
-  complement: z.string().max(50).nullable(),
+  complement: z.string().max(50).optional(),
 
   isSeller: z.boolean().default(false),
   password: z.string(),
