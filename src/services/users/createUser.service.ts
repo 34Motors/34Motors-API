@@ -7,6 +7,8 @@ const createUserService = async (userData: tUserRequest) => {
   try {
     const hashedPassword = await hash(userData.password, 10)
 
+    const description = userData.description === undefined ? null : userData.description
+
     const newUser = await prismaClient.user.create({
         data: {
           name: userData.name,
@@ -15,10 +17,12 @@ const createUserService = async (userData: tUserRequest) => {
           cpf: userData.cpf,
           phone: userData.phone,
           birthDate: userData.birthDate,
-          description: userData.description,
+          description: description,
           isSeller: userData.isSeller,
         },
       });
+
+      const complement = userData.complement === undefined ? null : userData.complement
     
       await prismaClient.address.create({
         data: {
@@ -27,7 +31,7 @@ const createUserService = async (userData: tUserRequest) => {
           state: userData.state,
           street: userData.street,
           number: userData.number,
-          complement: userData.complement,
+          complement: complement,
           userId: newUser.id,
         },
       });
@@ -42,6 +46,7 @@ const createUserService = async (userData: tUserRequest) => {
       });
     
       return returnUser;
+      
   } catch (error) {
     throw new AppError("Try a different CPF, email or phone")
   }
