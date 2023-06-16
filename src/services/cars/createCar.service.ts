@@ -18,22 +18,6 @@ const createCarsService = async (data: ICarsBody) => {
             frontImage: data.frontImage,
             published: data.published,
             userId: data.userId,
-        },
-        include: {
-            images: true,
-            user: {
-                select: {
-                    id: true,
-                    name: true,
-                    email: true,
-                    birthDate: true,
-                    phone: true,
-                    isSeller: true,
-                    description: true,
-                    cpf: true,
-                }
-            },
-            comments: true,
         }
     })
     data.images.map(async (image) => {
@@ -46,7 +30,29 @@ const createCarsService = async (data: ICarsBody) => {
         })
     })
 
-    return newCar
+    const returnCar = await prismaClient.car.findFirst({
+        where: {
+          id: newCar.id,
+        },
+        include: {
+            user: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    birthDate: true,
+                    phone: true,
+                    isSeller: true,
+                    description: true,
+                    cpf: true,
+                }
+            },
+          comments:true,
+          images:true
+        },
+      });
+
+    return returnCar
 
 }
 
