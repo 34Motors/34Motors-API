@@ -14,7 +14,7 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
         ...carExists,
         ...data
     }
-
+/*
     const editCar = await prismaClient.car.update({
         where: { id },
         data: {
@@ -31,8 +31,8 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
             published: carUpdateData.published!,
         }
     })
-
-    return editCar
+*/
+    return "editCar"
 }
 
 export { editCarService }
