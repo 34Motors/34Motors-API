@@ -8,13 +8,15 @@ import { editCarController } from "../controllers/cars/editCar.controller";
 import { listAllCarController } from "../controllers/cars/listAllCars.controller";
 import { deleteCarController } from "../controllers/cars/deleteCar.controller";
 import { uploadFrontImageController } from "../controllers/cars/uploadFrontImage.controller";
-import upload from "../middlewares/multer";
+import upload from "../middlewares/multer.middleware";
+import { uploadCarImagesController } from "../controllers/cars/uploadCarImages.controller";
 
 const carRoutes: Router = Router()
 
 
 carRoutes.post("", verifyDataIsValid(createCarBody), verifyUserExists, createCarController)
 carRoutes.patch("/:id/upload", upload.single("frontImage"), uploadFrontImageController)
+carRoutes.post("/:id/upload", upload.array("images", 6), uploadCarImagesController)
 carRoutes.get("/:id", listCarController)
 carRoutes.get("", listAllCarController)
 carRoutes.patch("/:id", verifyDataIsValid(carEditSchema), editCarController)
