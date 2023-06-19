@@ -24,7 +24,6 @@ const handleErrors = (error: Error, _req: Request, res: Response, _next: NextFun
             message: error.flatten().fieldErrors
         })
     }
-    console.log(error)
 
     return res.status(500).json({
         message: "Internal Server Error"

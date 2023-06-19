@@ -14,7 +14,7 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
         ...carExists,
         ...data
     }
-/*
+
     const editCar = await prismaClient.car.update({
         where: { id },
         data: {
@@ -23,7 +23,6 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
             color: carUpdateData.color!,
             description: carUpdateData.description!,
             fipePrice: carUpdateData.fipePrice!,
-            frontImage: carUpdateData.frontImage!,
             fuelType: carUpdateData.fuelType!,
             quilometers: carUpdateData.quilometers!,
             model: carUpdateData.model!,
@@ -31,8 +30,8 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
             published: carUpdateData.published!,
         }
     })
-*/
-    return "editCar"
+
+    return editCar
 }
 
 export { editCarService }

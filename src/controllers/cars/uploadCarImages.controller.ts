@@ -7,9 +7,16 @@ const uploadCarImagesController = async (req: Request, res: Response): Promise<R
     throw new AppError("Please, submit valid files", 400);
   }
 
-  const files = req.files as Express.Multer.File[]
+  const files = req.files as Express.Multer.File[];
 
-  files.forEach(async (file) => {await uploadCarImagesService(file, parseInt(req.params.id))})
+  files.forEach(async (file) => {
+    const validFormats = ["image/jpeg", "image/png", "image/webp"];
+    if (!validFormats.includes(file.mimetype)) {
+      throw new AppError(`Valid formats are: ${validFormats}`);
+    }
+
+    await uploadCarImagesService(file, parseInt(req.params.id));
+  });
 
   return res.json({ message: "Succefully uploaded images" });
 };

@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import { prismaClient } from "../../database";
+import { unlink } from "fs";
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME!,
@@ -21,6 +22,12 @@ const uploadFrontImageService = async (
       frontImage: newImage.secure_url,
     },
   });
+
+  unlink(image.path, (error) => {
+    if(error) {
+      console.log(error)
+    }
+  })
 
   return;
 };

@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import { prismaClient } from "../../database";
+import { unlink } from "fs";
 
 const uploadCarImagesService = async (
   image: Express.Multer.File,
@@ -9,7 +10,6 @@ const uploadCarImagesService = async (
     image.path,
     { resource_type: "image" },
     (error: any, result: any) => {
-      console.log(error);
       return result;
     }
   );
@@ -20,6 +20,12 @@ const uploadCarImagesService = async (
       carId: carId,
     },
   });
+
+  unlink(image.path, (error) => {
+    if(error) {
+      console.log(error)
+    }
+  })
 };
 
 export { uploadCarImagesService };
