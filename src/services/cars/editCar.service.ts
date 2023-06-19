@@ -23,7 +23,6 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
             color: carUpdateData.color!,
             description: carUpdateData.description!,
             fipePrice: carUpdateData.fipePrice!,
-            frontImage: carUpdateData.frontImage!,
             fuelType: carUpdateData.fuelType!,
             quilometers: carUpdateData.quilometers!,
             model: carUpdateData.model!,
