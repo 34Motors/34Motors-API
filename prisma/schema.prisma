@@ -57,7 +57,7 @@ model Car {
   user        User      @relation(fields: [userId], references: [id])
   userId      Int
   comments    Comment[]
-  images      Image[]
+  images      Image[] 
 
   @@map("cars")
 }
