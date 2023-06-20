@@ -47,7 +47,7 @@ model Car {
   model       String    @db.VarChar(50)
   year        String    @db.VarChar(4)
   fuelType    String
-  quilometers String    @db.VarChar(6)
+  quilometers Int
   color       String    @db.VarChar(16)
   fipePrice   String
   price       Int
