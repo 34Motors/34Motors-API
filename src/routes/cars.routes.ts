@@ -11,9 +11,9 @@ import { uploadFrontImageController } from "../controllers/cars/uploadFrontImage
 import upload from "../middlewares/multer.middleware";
 import { uploadCarImagesController } from "../controllers/cars/uploadCarImages.controller";
 import { deleteCarImagesController } from "../controllers/cars/deleteCarImages.controller";
+import verifyIsAuth from "../middlewares/verifyIsAuth.middleware";
 
 const carRoutes: Router = Router()
-
 
 carRoutes.post("", verifyDataIsValid(createCarBody), verifyUserExists, createCarController)
 carRoutes.patch("/:id/upload", upload.single("frontImage"), uploadFrontImageController)
