@@ -11,17 +11,17 @@ import { uploadFrontImageController } from "../controllers/cars/uploadFrontImage
 import upload from "../middlewares/multer.middleware";
 import { uploadCarImagesController } from "../controllers/cars/uploadCarImages.controller";
 import { deleteCarImagesController } from "../controllers/cars/deleteCarImages.controller";
+import verifyIsAuth from "../middlewares/verifyIsAuth.middleware";
 
 const carRoutes: Router = Router()
 
-
-carRoutes.post("", verifyDataIsValid(createCarBody), verifyUserExists, createCarController)
-carRoutes.patch("/:id/upload", upload.single("frontImage"), uploadFrontImageController)
-carRoutes.post("/:id/upload", upload.array("image", 6), uploadCarImagesController)
-carRoutes.delete("/:imageId/images/delete", deleteCarImagesController)
+carRoutes.post("", verifyIsAuth, verifyDataIsValid(createCarBody), verifyUserExists, createCarController)
+carRoutes.patch("/:id/upload", verifyIsAuth, upload.single("frontImage"), uploadFrontImageController)
+carRoutes.post("/:id/upload", verifyIsAuth, upload.array("image", 6), uploadCarImagesController)
+carRoutes.delete("/:imageId/images/delete", verifyIsAuth, deleteCarImagesController)
 carRoutes.get("/:id", listCarController)
 carRoutes.get("", listAllCarController)
-carRoutes.patch("/:id", verifyDataIsValid(carEditSchema), editCarController)
-carRoutes.delete("/:id", deleteCarController)
+carRoutes.patch("/:id", verifyIsAuth, verifyDataIsValid(carEditSchema), editCarController)
+carRoutes.delete("/:id", verifyIsAuth, deleteCarController)
 
 export { carRoutes }

@@ -53,4 +53,16 @@ const returnUser = createUserBody.extend({
   id: z.number(),
 });
 
-export { createUserBody, returnUser };
+const userEditSchema = z
+  .object({
+    name: z.string().max(127),
+    email: z.string().max(127),
+    cpf: z.string().max(11),
+    phone: z.string().max(11),
+    birthDate: z.string(),
+    description: z.string().optional(),
+    password: z.string(),
+  })
+  .partial();
+
+export { createUserBody, returnUser, userEditSchema };
