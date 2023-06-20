@@ -1,6 +1,63 @@
 import { prismaClient } from "../../database";
+import { Request } from "express";
 
-const listAllCarService = async () => {
+interface filter {
+  brand: string;
+  color: string;
+  year: string;
+  fuelType: "Flex" | "Hibrido" | "Eletrico";
+  price: {
+    lte: number;
+    gte: number;
+  };
+  quilometers: {
+    lte: number;
+    gte: number;
+  };
+}
+
+const listAllCarService = async (queryParams: Request["query"]) => {
+  const filterOptions = await avaliableFilters();
+
+  const {
+    brand,
+    color,
+    year,
+    fuelType,
+    maxPrice,
+    minPrice,
+    minQuilometers,
+    maxQuilometers,
+  } = queryParams;
+
+  const filters = {} as filter;
+
+  if (brand) {
+    filters.brand = brand as filter["brand"];
+  }
+
+  if (color) {
+    filters.color = color as filter["color"];
+  }
+
+  if (year) {
+    filters.year = year as filter["year"];
+  }
+
+  if (fuelType) {
+    filters.fuelType = fuelType as filter["fuelType"];
+  }
+
+  filters.price = {
+    lte: +(maxPrice || filterOptions.maxPrice),
+    gte: +(minPrice || filterOptions.minPrice),
+  };
+
+  filters.quilometers = {
+    lte: +(maxQuilometers || filterOptions.maxQuilometers),
+    gte: +(minQuilometers || filterOptions.minQuilometers),
+  };
+
   const cars = await prismaClient.car.findMany({
     include: {
       user: {
@@ -9,12 +66,11 @@ const listAllCarService = async () => {
         },
       },
     },
+    where: filters,
   });
 
-  const filters = await avaliableFilters();
-
   return {
-    filters,
+    filterOptions,
     cars,
   };
 };
@@ -62,10 +118,10 @@ async function avaliableFilters() {
   const colors = prismaColors.map((item) => item.color);
   const years = prismaYears.map((item) => item.year);
   const fuelTypes = prismaFuelTypes.map((item) => item.fuelType);
-  const maxPrice = prices._max.price;
-  const minPrice = prices._min.price;
-  const maxQuilometers = quilometers._max.quilometers;
-  const minQuilometers = quilometers._min.quilometers;
+  const maxPrice = prices._max.price || 0;
+  const minPrice = prices._min.price || 0;
+  const maxQuilometers = quilometers._max.quilometers || 0;
+  const minQuilometers = quilometers._min.quilometers || 0;
 
   return {
     maxPrice,

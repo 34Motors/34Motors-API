@@ -19,8 +19,8 @@ carRoutes.post("", verifyDataIsValid(createCarBody), verifyUserExists, createCar
 carRoutes.patch("/:id/upload", upload.single("frontImage"), uploadFrontImageController)
 carRoutes.post("/:id/upload", upload.array("image", 6), uploadCarImagesController)
 carRoutes.delete("/:imageId/images/delete", deleteCarImagesController)
-carRoutes.get("/:id", listCarController)
 carRoutes.get("", listAllCarController)
+carRoutes.get("/:id", listCarController)
 carRoutes.patch("/:id", verifyDataIsValid(carEditSchema), editCarController)
 carRoutes.delete("/:id", deleteCarController)
 
