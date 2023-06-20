@@ -5,7 +5,7 @@ const createCarBody = z.object({
   model: z.string().max(50),
   year: z.string().max(4),
   fuelType: z.enum(["Hibrido", "Flex", "Eletrico"]),
-  quilometers: z.string().max(6),
+  quilometers: z.number(),
   color: z.string().max(16),
   fipePrice: z.string(),
   price: z.number(),
@@ -19,8 +19,8 @@ const uploadFrontImageRequest = z.object({
 });
 
 const uploadCarImages = z.object({
-  images: z.custom<Express.Multer.File>().array()
-})
+  images: z.custom<Express.Multer.File>().array(),
+});
 
 const carEditOmitUserId = createCarBody.omit({
   userId: true,
@@ -29,4 +29,9 @@ const carEditOmitUserId = createCarBody.omit({
 
 const carEditSchema = carEditOmitUserId.partial();
 
-export { createCarBody, uploadFrontImageRequest, uploadCarImages, carEditSchema };
+export {
+  createCarBody,
+  uploadFrontImageRequest,
+  uploadCarImages,
+  carEditSchema,
+};
