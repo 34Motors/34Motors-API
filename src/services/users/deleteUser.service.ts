@@ -8,10 +8,6 @@ const deleteUserService = async (id: number) => {
     });
     const addressId = Number(user?.address?.id);
 
-    const address = await prismaClient.address.findUnique({
-      where: { id: addressId },
-    });
-
     await prismaClient.address.delete({
       where: { id: addressId },
     });
