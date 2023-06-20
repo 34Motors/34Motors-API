@@ -65,4 +65,15 @@ const userEditSchema = z
   })
   .partial();
 
-export { createUserBody, returnUser, userEditSchema };
+const addressEditSchema = z
+  .object({
+    cep: z.string().max(8),
+    state: z.enum(validStates),
+    city: z.string().max(50),
+    street: z.string().max(127),
+    number: z.string().max(8),
+    complement: z.string().max(50).optional(),
+  })
+  .partial();
+
+export { createUserBody, returnUser, userEditSchema, addressEditSchema };
