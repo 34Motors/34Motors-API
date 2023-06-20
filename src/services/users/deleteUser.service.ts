@@ -7,9 +7,11 @@ const deleteUserService = async (id: number, passwordData: any) => {
       where: { id },
       select: { password: true, address: true },
     });
+
     if (!user) throw new AppError("User not found", 403);
     
     const passwordMatch: boolean = await compare(passwordData, user.password);
+    
     if (!passwordMatch) throw new AppError("Invalid password", 403);
 
     const addressId = Number(user?.address?.id);
