@@ -13,10 +13,13 @@ import { editAddressController } from "../controllers/address/editAddress.contro
 import { verifyUserIdForParamsExist } from "../middlewares/verifyUserIdForParams.middleware";
 import { verifyIsEmpty } from "../middlewares/verifyIsEmpty.middleware";
 import { deleteUserController } from "../controllers/users/deleteUser.controller";
+import { ensureCpfWontRepeat } from "../middlewares/ensureCpfWontRepeat.middleware.";
+import { ensureEmailWontRepeat } from "../middlewares/ensureEmailWontRepeat.middleware";
+import { ensurePhoneWontRepeat } from "../middlewares/ensurePhoneWontRepeat.middleware";
 
 const userRoutes: Router = Router();
 
-userRoutes.post("", verifyDataIsValid(createUserBody), createUserController);
+userRoutes.post("", verifyDataIsValid(createUserBody), ensureEmailWontRepeat, ensureCpfWontRepeat, ensurePhoneWontRepeat, createUserController);
 
 userRoutes.get("/:id", verifyUserIdForParamsExist, listUserController);
 
