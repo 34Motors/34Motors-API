@@ -38,6 +38,6 @@ userRoutes.patch(
   editAddressController
 );
 
-userRoutes.delete("/", verifyIsAuth, deleteUserController);
+userRoutes.delete("", verifyIsAuth, deleteUserController);
 
 export { userRoutes };
