@@ -63,6 +63,7 @@ const listAllCarService = async (queryParams: Request["query"]) => {
       user: {
         select: {
           name: true,
+          id:true
         },
       },
     },

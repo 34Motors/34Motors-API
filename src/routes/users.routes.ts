@@ -24,7 +24,6 @@ userRoutes.patch(
   "/:id",
   verifyUserIdForParamsExist,
   verifyIsAuth,
-  verifyIsEmpty,
   verifyDataIsValid(userEditSchema),
   editUserController
 );
