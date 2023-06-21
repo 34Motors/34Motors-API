@@ -3,27 +3,26 @@ import { prismaClient } from "../../database/index";
 import { AppError } from "../../errors";
 
 const deleteUserService = async (id: number, passwordData: any) => {
-    const user = await prismaClient.user.findUnique({
-      where: { id },
-      select: { password: true, address: true },
-    });
+  const user = await prismaClient.user.findUnique({
+    where: { id },
+    select: { password: true, address: true },
+  });
 
-    if (!user) throw new AppError("User not found", 403);
-    
-    const passwordMatch: boolean = await compare(passwordData, user.password);
-    
-    if (!passwordMatch) throw new AppError("Invalid password", 403);
+  if (!user) throw new AppError("Usuário não encontrado", 403);
 
-    const addressId = Number(user?.address?.id);
+  const passwordMatch: boolean = await compare(passwordData, user.password);
 
-    await prismaClient.address.delete({
-      where: { id: addressId },
-    });
+  if (!passwordMatch) throw new AppError("Senha inválida", 403);
 
-    await prismaClient.user.delete({
-      where: { id },
-    });
+  const addressId = Number(user?.address?.id);
 
+  await prismaClient.address.delete({
+    where: { id: addressId },
+  });
+
+  await prismaClient.user.delete({
+    where: { id },
+  });
 };
 
 export { deleteUserService };
