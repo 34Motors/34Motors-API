@@ -5,9 +5,9 @@ const deleteUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const passwordData = req.body;
+  const passwordData = req.headers.password;
 
-  await deleteUserService(Number(res.locals.userId), passwordData.password);
+  await deleteUserService(Number(res.locals.userId), passwordData);
 
   return res.status(204).json();
 };
