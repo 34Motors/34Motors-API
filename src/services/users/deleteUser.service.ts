@@ -1,23 +1,28 @@
+import { compare } from "bcryptjs";
 import { prismaClient } from "../../database/index";
+import { AppError } from "../../errors";
 
-const deleteUserService = async (id: number) => {
-  try {
-    const user = await prismaClient.user.findUnique({
-      where: { id },
-      select: { address: true },
-    });
-    const addressId = Number(user?.address?.id);
+const deleteUserService = async (id: number, passwordData: any) => {
+  const user = await prismaClient.user.findUnique({
+    where: { id },
+    select: { password: true, address: true },
+  });
 
-    await prismaClient.address.delete({
-      where: { id: addressId },
-    });
+  if (!user) throw new AppError("Usuário não encontrado", 403);
 
-    await prismaClient.user.delete({
-      where: { id },
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  const passwordMatch: boolean = await compare(passwordData, user.password);
+
+  if (!passwordMatch) throw new AppError("Senha inválida", 403);
+
+  const addressId = Number(user?.address?.id);
+
+  await prismaClient.address.delete({
+    where: { id: addressId },
+  });
+
+  await prismaClient.user.delete({
+    where: { id },
+  });
 };
 
 export { deleteUserService };
