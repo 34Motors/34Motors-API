@@ -18,11 +18,14 @@ import { recoverPasswordController } from "../controllers/users/recoverPassword.
 import { ensureCpfWontRepeat } from "../middlewares/ensureCpfWontRepeat.middleware.";
 import { ensureEmailWontRepeat } from "../middlewares/ensureEmailWontRepeat.middleware";
 import { ensurePhoneWontRepeat } from "../middlewares/ensurePhoneWontRepeat.middleware";
+import { listLoggedUserController } from "../controllers/users/listLoggedUser.controller";
 
 
 const userRoutes: Router = Router();
 
 userRoutes.post("", verifyDataIsValid(createUserBody), ensureEmailWontRepeat, ensureCpfWontRepeat, ensurePhoneWontRepeat, createUserController);
+
+userRoutes.get("", verifyIsAuth, listLoggedUserController);
 
 userRoutes.get("/:id", verifyUserIdForParamsExist, listUserController);
 
