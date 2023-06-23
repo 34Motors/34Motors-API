@@ -117,6 +117,21 @@ const listAllCarService = async (queryParams: Request["query"]) => {
     filterOptions = refineFilterOptions(cars as Car[]);
   }
 
+  filterOptions = [
+    { brand: filterOptions.brand },
+    { model: filterOptions.model },
+    { color: filterOptions.color },
+    { year: filterOptions.year },
+    { fuelType: filterOptions.fuelType },
+    { price: { max: filterOptions.price.max, min: filterOptions.price.min } },
+    {
+      quilometers: {
+        max: filterOptions.quilometers.max,
+        min: filterOptions.quilometers.min,
+      },
+    },
+  ];
+
   return {
     filterOptions,
     cars,
