@@ -15,13 +15,13 @@ import verifyIsAuth from "../middlewares/verifyIsAuth.middleware";
 
 const carRoutes: Router = Router()
 
-carRoutes.post("", verifyIsAuth, verifyDataIsValid(createCarBody), verifyUserExists, createCarController)
-carRoutes.patch("/:id/upload", verifyIsAuth, upload.single("frontImage"), uploadFrontImageController)
-carRoutes.post("/:id/upload", verifyIsAuth, upload.array("image", 6), uploadCarImagesController)
-carRoutes.delete("/:imageId/images/delete", verifyIsAuth, deleteCarImagesController)
-carRoutes.get("/:id", listCarController)
+carRoutes.post("", verifyDataIsValid(createCarBody), verifyUserExists, createCarController)
+carRoutes.patch("/:id/upload", upload.single("frontImage"), uploadFrontImageController)
+carRoutes.post("/:id/upload", upload.array("image", 6), uploadCarImagesController)
+carRoutes.delete("/:imageId/images/delete", deleteCarImagesController)
 carRoutes.get("", listAllCarController)
-carRoutes.patch("/:id", verifyIsAuth, verifyDataIsValid(carEditSchema), editCarController)
-carRoutes.delete("/:id", verifyIsAuth, deleteCarController)
+carRoutes.get("/:id", listCarController)
+carRoutes.patch("/:id", verifyDataIsValid(carEditSchema), editCarController)
+carRoutes.delete("/:id", deleteCarController)
 
 export { carRoutes }

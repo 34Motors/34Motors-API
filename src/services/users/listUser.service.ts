@@ -14,6 +14,7 @@ const listUserService = async (id: number) => {
             isSeller: true,
             description: true,
             cpf: true,
+            address: true,
         }
     })
     

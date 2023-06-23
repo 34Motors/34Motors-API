@@ -15,10 +15,14 @@ import { verifyIsEmpty } from "../middlewares/verifyIsEmpty.middleware";
 import { deleteUserController } from "../controllers/users/deleteUser.controller";
 import { sendEmailResetPasswordController } from "../controllers/users/sendEmailRecover.controller";
 import { recoverPasswordController } from "../controllers/users/recoverPassword.controller";
+import { ensureCpfWontRepeat } from "../middlewares/ensureCpfWontRepeat.middleware.";
+import { ensureEmailWontRepeat } from "../middlewares/ensureEmailWontRepeat.middleware";
+import { ensurePhoneWontRepeat } from "../middlewares/ensurePhoneWontRepeat.middleware";
+
 
 const userRoutes: Router = Router();
 
-userRoutes.post("", verifyDataIsValid(createUserBody), createUserController);
+userRoutes.post("", verifyDataIsValid(createUserBody), ensureEmailWontRepeat, ensureCpfWontRepeat, ensurePhoneWontRepeat, createUserController);
 
 userRoutes.get("/:id", verifyUserIdForParamsExist, listUserController);
 
@@ -26,7 +30,6 @@ userRoutes.patch(
   "/:id",
   verifyUserIdForParamsExist,
   verifyIsAuth,
-  verifyIsEmpty,
   verifyDataIsValid(userEditSchema),
   editUserController
 );
@@ -40,9 +43,8 @@ userRoutes.patch(
   editAddressController
 );
 
-userRoutes.delete("", verifyIsAuth, verifyIsEmpty, deleteUserController);
-
 userRoutes.post("/recover", sendEmailResetPasswordController);
 userRoutes.patch("/recover/:token", recoverPasswordController);
+userRoutes.delete("", verifyIsAuth, deleteUserController);
 
 export { userRoutes };
