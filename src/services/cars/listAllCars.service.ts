@@ -117,7 +117,7 @@ const listAllCarService = async (queryParams: Request["query"]) => {
     filterOptions = refineFilterOptions(cars as Car[]);
   }
 
-  filterOptions = [
+  const filteredOptions = [
     { brand: filterOptions.brand },
     { model: filterOptions.model },
     { color: filterOptions.color },
@@ -133,7 +133,7 @@ const listAllCarService = async (queryParams: Request["query"]) => {
   ];
 
   return {
-    filterOptions,
+    filterOptions: filteredOptions,
     cars,
   };
 };
