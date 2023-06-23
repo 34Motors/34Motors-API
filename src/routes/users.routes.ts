@@ -13,6 +13,8 @@ import { editAddressController } from "../controllers/address/editAddress.contro
 import { verifyUserIdForParamsExist } from "../middlewares/verifyUserIdForParams.middleware";
 import { verifyIsEmpty } from "../middlewares/verifyIsEmpty.middleware";
 import { deleteUserController } from "../controllers/users/deleteUser.controller";
+import { sendEmailResetPasswordController } from "../controllers/users/sendEmailRecover.controller";
+import { recoverPasswordController } from "../controllers/users/recoverPassword.controller";
 
 const userRoutes: Router = Router();
 
@@ -38,6 +40,9 @@ userRoutes.patch(
   editAddressController
 );
 
-userRoutes.delete("", verifyIsAuth, verifyIsEmpty,deleteUserController);
+userRoutes.delete("", verifyIsAuth, verifyIsEmpty, deleteUserController);
+
+userRoutes.post("/recover", sendEmailResetPasswordController);
+userRoutes.patch("/recover/:token", recoverPasswordController);
 
 export { userRoutes };
