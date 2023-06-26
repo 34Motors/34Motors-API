@@ -5,11 +5,12 @@ import { createTransport } from "nodemailer";
 
 async function sendEmail({ to, subject, text }: IEmailRequest) {
   const transporter = createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: "a8f9fcb5492e17",
-      pass: "cc9c08a21f5b71",
+      user: "help-34-Motors@hotmail.com",
+      pass: process.env.SMTP_PASS,
     },
   });
 
