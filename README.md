@@ -1,3 +1,54 @@
+<div align="center">
+    <h2><strong>
+    Instalando as dependências
+    </strong>
+    </h2>
+    <p>Para inciar este projeto, é necessário instalar as dependências. Portanto você deve estar no diretório correto e utilizar o comando abaixo para instalar as dependências:</p>
+</div>
+
+```bash
+# caso use npm
+npm install
+
+# caso use yarn
+yarn
+```
+<br>
+<br>
+<hr>
+<br>
+<div align="center">
+    <h2>
+    <strong>Aplicar as migrações e gerar tabelas</strong>
+    </h2>
+    <p>Para gerar as tabelas com o PRISMA, é necessário utilizar o comando abaixo:</p>
+</div>
+
+```bash
+npx prisma migrate dev
+```
+<br>
+<br>
+<hr>
+<br>
+<div align="center">
+    <h2>
+    <strong>Rodando a aplicação localmente</strong>
+    </h2>
+    <p>Para rodar a aplicação localmente, também se faz necessário acessar a pasta de cada uma e utilizar o comando abaixo:</p>
+</div>
+
+```bash
+# caso use npm
+npm run dev
+
+# caso use yarn
+yarn dev
+```
+<br>
+<br>
+<hr>
+
 ## **Endpoints**
 ### **[POST]/users**
 * Cria um usuário contendo os seguintes dados: 
