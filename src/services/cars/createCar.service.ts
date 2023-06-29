@@ -1,7 +1,7 @@
 import { prismaClient } from "../../database";
 import { ICarsBody } from "../../interfaces/cars.interfaces";
 
-const createCarsService = async (data: ICarsBody) => {
+const createCarsService = async (data: ICarsBody, userId: number) => {
   const newCar = await prismaClient.car.create({
     data: {
       brand: data.brand,
@@ -14,8 +14,8 @@ const createCarsService = async (data: ICarsBody) => {
       price: data.price,
       description: data.description,
       frontImage: "",
-      published: data.published,
-      userId: data.userId,
+      published: true,
+      userId: +userId,
     },
   });
 

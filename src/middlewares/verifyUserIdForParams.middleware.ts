@@ -13,7 +13,7 @@ const verifyUserIdForParamsExist = async (
     where: { id },
   });
 
-  if (!userExists) throw new AppError("User not found", 404);
+  if (!userExists) throw new AppError("Usuário não encontrado", 404);
 
   return next();
 };

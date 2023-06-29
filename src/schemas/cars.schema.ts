@@ -11,7 +11,6 @@ const createCarBody = z.object({
   price: z.number(),
   description: z.string(),
   published: z.boolean().default(true),
-  userId: z.number(),
 });
 
 const uploadFrontImageRequest = z.object({
@@ -22,12 +21,7 @@ const uploadCarImages = z.object({
   images: z.custom<Express.Multer.File>().array(),
 });
 
-const carEditOmitUserId = createCarBody.omit({
-  userId: true,
-  images: true,
-});
-
-const carEditSchema = carEditOmitUserId.partial();
+const carEditSchema = createCarBody.partial();
 
 export {
   createCarBody,

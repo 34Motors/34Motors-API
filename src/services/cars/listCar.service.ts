@@ -7,7 +7,7 @@ const listCarService = async (id: number) => {
         where: { id }
     })
 
-    if (!carExists) throw new AppError("car not found", 404)
+    if (!carExists) throw new AppError("Carro não encontrado", 404)
 
     const car = await prismaClient.car.findUnique({
         where: { id },
