@@ -22,7 +22,7 @@ async function sendEmail({ to, subject, text }: IEmailRequest) {
       html: text,
     })
     .then(() => {
-      console.log("Email enviado com sucesso");
+      console.log(`Email de recuperação enviado para ${to}`);
     })
     .catch((err: any) => {
       console.log(err);

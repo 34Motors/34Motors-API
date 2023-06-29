@@ -2,6 +2,8 @@ import { prismaClient } from "../../database";
 import { ICarsBody } from "../../interfaces/cars.interfaces";
 
 const createCarsService = async (data: ICarsBody, userId: number) => {
+  const numberFipePrice = data.fipePrice.split(",")[0].replace(/[^0-9]+/g, "");
+
   const newCar = await prismaClient.car.create({
     data: {
       brand: data.brand,
@@ -10,7 +12,7 @@ const createCarsService = async (data: ICarsBody, userId: number) => {
       fuelType: data.fuelType,
       quilometers: data.quilometers,
       color: data.color,
-      fipePrice: data.fipePrice,
+      fipePrice: numberFipePrice,
       price: data.price,
       description: data.description,
       frontImage: "",
