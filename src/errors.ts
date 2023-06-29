@@ -18,9 +18,6 @@ const handleErrors = (
   res: Response,
   _next: NextFunction
 ) => {
-  console.log(error);
-  
-
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       message: error.message,
