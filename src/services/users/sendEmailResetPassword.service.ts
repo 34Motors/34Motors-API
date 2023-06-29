@@ -9,7 +9,7 @@ export const sendEmailResetPasswordService = async (email: string) => {
   });
 
   if (!user) {
-    throw new AppError("User not found");
+    throw new AppError("Usuário não encontrado");
   }
 
   const resetToken = randomUUID();

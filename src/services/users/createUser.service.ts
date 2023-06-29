@@ -1,10 +1,8 @@
 import { hash } from "bcryptjs";
 import { prismaClient } from "../../database";
-import { AppError } from "../../errors";
 import { tUserRequest } from "../../interfaces/users.interfaces";
 
 const createUserService = async (userData: tUserRequest) => {
-  try {
     const hashedPassword = await hash(userData.password, 10);
 
     const description =
@@ -55,10 +53,6 @@ const createUserService = async (userData: tUserRequest) => {
     });
 
     return returnCreatedUser;
-  } catch (error) {
-    console.log(error);
-    throw new AppError("Try a different CPF, email or phone");
-  }
 };
 
 export { createUserService };

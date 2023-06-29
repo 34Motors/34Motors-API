@@ -2,8 +2,7 @@ import { Request, Response } from 'express'
 import { createCarsService } from '../../services/cars/createCar.service'
 
 const createCarController = async (req: Request, res: Response): Promise<Response> => {
-
-    const car = await createCarsService(req.body)
+    const car = await createCarsService(req.body, res.locals.userId)
 
     return res.status(201).json(car)
 }

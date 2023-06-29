@@ -10,7 +10,7 @@ const recoverPasswordService = async (password: string, resetToken: string) => {
   });
 
   if (!user) {
-    throw new AppError("user not found", 404);
+    throw new AppError("Token de redefinição de senha não encontrado", 404);
   }
 
   await prismaClient.user.update({

@@ -8,7 +8,7 @@ const editCarService = async (data: ICarsEditedBody, id: number) => {
         where: { id }
     })
 
-    if (!carExists) throw new AppError("car not found", 404)
+    if (!carExists) throw new AppError("Carro não encontrado", 404)
 
     const carUpdateData = {
         ...carExists,

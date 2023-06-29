@@ -56,7 +56,7 @@ async function resetPasswordTemplate(
         button: {
           color: "#DC4D2F",
           text: "Redefinir senha",
-          link: `${process.env.APP_URL}/resetPassword/${resetToken}`,
+          link: `${process.env.APP_URL}/recover-password/${resetToken}`,
         },
       },
       outro:

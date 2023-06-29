@@ -2,7 +2,6 @@ import { prismaClient } from "../../database"
 import { AppError } from "../../errors"
 
 const listUserService = async (id: number) => {
-
     const user = await prismaClient.user.findUnique({
         where: { id },
         select:{
@@ -18,7 +17,7 @@ const listUserService = async (id: number) => {
         }
     })
     
-    if (!user) throw new AppError("user not found", 404)
+    if (!user) throw new AppError("Usuário não encontrado", 404)
 
     return user
 }

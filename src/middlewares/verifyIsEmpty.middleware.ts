@@ -10,7 +10,7 @@ const verifyIsEmpty = async (
   const isEmpty = Object.keys(req.body).length <= 0;
 
   if (isEmpty) {
-    throw new AppError("Your request body is empty", 400);
+    throw new AppError("Envie um objeto válido", 400);
   }
 
   return next();
