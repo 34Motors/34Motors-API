@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "dev": "ts-node-dev --ignore-watch node_modules --cls --rs src/server.ts"
+    "dev": "ts-node-dev --ignore-watch node_modules --cls --rs src/server.ts",
+    "build": "yarn && yarn prisma migrate dev"
   },
   "dependencies": {
     "@prisma/client": "^4.15.0",
