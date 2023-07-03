@@ -25,6 +25,9 @@ const verifyIsAuth = (req: Request, res: Response, next: NextFunction) => {
 
       res.locals.userId = decoded.sub;
 
+      console.log(decoded.sub);
+      
+
       next();
     }
   );
