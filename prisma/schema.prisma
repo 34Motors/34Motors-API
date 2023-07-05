@@ -37,7 +37,7 @@ model Address {
   street     String  @db.VarChar(127)
   number     String  @db.VarChar(8)
   complement String? @db.VarChar(50)
-  user       User    @relation(fields: [userId], references: [id])
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade) 
   userId     Int     @unique
 
   @@map("addresses")
@@ -56,7 +56,7 @@ model Car {
   description String
   frontImage  String    @db.VarChar(255)
   published   Boolean   @default(true)
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
   comments    Comment[]
   images      Image[]
@@ -68,9 +68,9 @@ model Comment {
   id          Int      @id @default(autoincrement())
   description String
   postDate    DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
-  car         Car      @relation(fields: [carId], references: [id])
+  car         Car      @relation(fields: [carId], references: [id], onDelete: Cascade)
   carId       Int
 
   @@map("comments")
@@ -79,7 +79,7 @@ model Comment {
 model Image {
   id       Int    @id @default(autoincrement())
   imageUrl String @db.VarChar(255)
-  car      Car    @relation(fields: [carId], references: [id])
+  car      Car    @relation(fields: [carId], references: [id], onDelete: Cascade)
   carId    Int
 
   @@map("images")
