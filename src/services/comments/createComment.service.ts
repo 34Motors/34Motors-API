@@ -30,6 +30,7 @@ const createCommentService = async (data: ICommentBody, userId: number, carId: n
                 select:{
                     id: true,
                     name: true,
+                    userColor:true
                 }
             }
         }

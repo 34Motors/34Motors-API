@@ -22,6 +22,9 @@ const listUserService = async (id: number) => {
             description: true,
             frontImage: true,
             published: true,
+            cpf: true,
+            address: true,
+            userColor: true,
         }
       },
     },

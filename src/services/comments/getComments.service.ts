@@ -10,6 +10,7 @@ const getCommentsService = async (carId: number) => {
         select: {
           id: true,
           name: true,
+          userColor:true
         },
       },
     },
