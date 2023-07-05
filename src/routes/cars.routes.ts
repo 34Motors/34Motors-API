@@ -18,6 +18,8 @@ import { deleteCarImagesController } from "../controllers/cars/deleteCarImages.c
 import verifyIsAuth from "../middlewares/verifyIsAuth.middleware";
 import { listCarImagesController } from "../controllers/cars/listCarImages.controller";
 import { verifyCarExists } from "../middlewares/verifyCarExists.middleware";
+import { listCarsFromSellerController } from "../controllers/cars/listCarsFromSeller.controller";
+import { verifyUserIdForParamsExist } from "../middlewares/verifyUserIdForParams.middleware";
 
 const carRoutes: Router = Router();
 
@@ -58,6 +60,12 @@ carRoutes.delete(
 );
 
 carRoutes.get("/:id", listCarController);
+
+carRoutes.get(
+  "/seller/:id",
+  verifyUserIdForParamsExist,
+  listCarsFromSellerController
+);
 
 carRoutes.get("", listAllCarController);
 
