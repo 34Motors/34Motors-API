@@ -1,26 +1,38 @@
-import { prismaClient } from "../../database"
-import { AppError } from "../../errors"
+import { prismaClient } from "../../database";
+import { AppError } from "../../errors";
 
 const listUserService = async (id: number) => {
-    const user = await prismaClient.user.findUnique({
-        where: { id },
-        select:{
+  const user = await prismaClient.user.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      phone: true,
+      isSeller: true,
+      description: true,
+      cars: {
+        select: {
             id: true,
-            name: true,
-            email: true,
-            birthDate: true,
-            phone: true,
-            isSeller: true,
+            brand: true,
+            model: true,
+            quilometers: true,
+            fipePrice: true,
+            price: true,
             description: true,
+            frontImage: true,
+            published: true,
             cpf: true,
             address: true,
             userColor: true,
         }
-    })
-    
-    if (!user) throw new AppError("Usuário não encontrado", 404)
+      },
+    },
+  });
 
-    return user
-}
+  if (!user) throw new AppError("Usuário não encontrado", 404);
 
-export { listUserService }
+  return user;
+};
+
+export { listUserService };

@@ -23,7 +23,7 @@ const verifyIsAuth = (req: Request, res: Response, next: NextFunction) => {
           .json({ message: "Token inválido, faça login com suas credenciais" });
       }
 
-      res.locals.userId = decoded.sub;
+      res.locals.userId = decoded.sub;  
 
       next();
     }

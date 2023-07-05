@@ -20,14 +20,24 @@ import { ensureEmailWontRepeat } from "../middlewares/ensureEmailWontRepeat.midd
 import { ensurePhoneWontRepeat } from "../middlewares/ensurePhoneWontRepeat.middleware";
 import { listLoggedUserController } from "../controllers/users/listLoggedUser.controller";
 
-
 const userRoutes: Router = Router();
 
-userRoutes.post("", verifyDataIsValid(createUserBody), ensureEmailWontRepeat, ensureCpfWontRepeat, ensurePhoneWontRepeat, createUserController);
+userRoutes.post(
+  "",
+  verifyDataIsValid(createUserBody),
+  ensureEmailWontRepeat,
+  ensureCpfWontRepeat,
+  ensurePhoneWontRepeat,
+  createUserController
+);
 
 userRoutes.get("", verifyIsAuth, listLoggedUserController);
 
-userRoutes.get("/:id", verifyUserIdForParamsExist, listUserController);
+userRoutes.get(
+  "/:id",
+  verifyUserIdForParamsExist,
+  listUserController
+);
 
 userRoutes.patch(
   "/:id",
