@@ -11,6 +11,10 @@ const listUserService = async (id: number) => {
       phone: true,
       isSeller: true,
       description: true,
+      cpf: true,
+      address: true,
+      userColor: true,
+      birthDate: true,
       cars: {
         select: {
             id: true,
@@ -22,9 +26,6 @@ const listUserService = async (id: number) => {
             description: true,
             frontImage: true,
             published: true,
-            cpf: true,
-            address: true,
-            userColor: true,
         }
       },
     },
