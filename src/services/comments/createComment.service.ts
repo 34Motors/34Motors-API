@@ -24,6 +24,8 @@ const createCommentService = async (data: ICommentBody, userId: number, carId: n
             carId
         },
         select: {
+            id: true,
+            carId: true,
             description: true,
             postDate: true,
             user: {
