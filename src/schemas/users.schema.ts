@@ -37,6 +37,7 @@ const createUserBody = z.object({
   phone: z.string().max(11),
   birthDate: z.string(),
   description: z.string().optional(),
+  userColor : z.number(),
 
   cep: z.string().max(8),
   state: z.enum(validStates),

@@ -18,6 +18,7 @@ const createUserService = async (userData: tUserRequest) => {
         birthDate: userData.birthDate,
         description: description,
         isSeller: userData.isSeller,
+        userColor: String(userData.userColor)
       },
     });
 
@@ -47,6 +48,7 @@ const createUserService = async (userData: tUserRequest) => {
         phone: true,
         isSeller: true,
         description: true,
+        userColor: true,
         cpf: true,
         address: true,
       }

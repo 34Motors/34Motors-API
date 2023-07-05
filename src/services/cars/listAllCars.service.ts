@@ -107,6 +107,7 @@ const listAllCarService = async (queryParams: Request["query"]) => {
         select: {
           id: true,
           name: true,
+          userColor:true
         },
       },
     },

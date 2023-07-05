@@ -14,6 +14,7 @@ const listUserService = async (id: number) => {
             description: true,
             cpf: true,
             address: true,
+            userColor: true,
         }
     })
     
