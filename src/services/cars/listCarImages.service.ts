@@ -7,7 +7,7 @@ const listCarImagesService = async (id: number) => {
     },
   });
 
-  return { images, amount: images.length };
+  return images;
 };
 
 export { listCarImagesService };

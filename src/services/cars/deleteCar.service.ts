@@ -9,14 +9,6 @@ const deleteCarService = async (id: number) => {
 
     if (!car) throw new AppError("Carro não encontrado", 404)
 
-    await prismaClient.comment.deleteMany({
-        where: { carId: car.id }
-    })
-
-    await prismaClient.image.deleteMany({
-        where: { carId: car.id }
-    })
-
     await prismaClient.car.delete({
         where: { id }
     })

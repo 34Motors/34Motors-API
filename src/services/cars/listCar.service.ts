@@ -13,6 +13,7 @@ const listCarService = async (id: number) => {
           birthDate: true,
           phone: true,
           isSeller: true,
+          userColor: true,
           description: true,
           cpf: true,
         },

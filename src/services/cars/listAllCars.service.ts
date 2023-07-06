@@ -107,6 +107,7 @@ const listAllCarService = async (queryParams: Request["query"]) => {
         select: {
           id: true,
           name: true,
+          userColor: true,
         },
       },
     },
@@ -184,11 +185,11 @@ async function avaliableFilters(): Promise<iFilterOptions> {
     _max: { quilometers: true },
   });
 
-  const brand = prismaBrands.map((item) => item.brand);
-  const model = prismaModels.map((item) => item.model);
-  const color = prismaColors.map((item) => item.color);
-  const year = prismaYears.map((item) => item.year);
-  const fuelType = prismaFuelTypes.map((item) => item.fuelType);
+  const brand = prismaBrands.map((item) => item.brand).sort();
+  const model = prismaModels.map((item) => item.model).sort();
+  const color = prismaColors.map((item) => item.color).sort();
+  const year = prismaYears.map((item) => item.year).sort();
+  const fuelType = prismaFuelTypes.map((item) => item.fuelType).sort();
   const maxPrice = prices._max.price || 0;
   const minPrice = prices._min.price || 0;
   const maxQuilometers = quilometers._max.quilometers || 0;

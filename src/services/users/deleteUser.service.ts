@@ -14,15 +14,10 @@ const deleteUserService = async (id: number, passwordData: any) => {
 
   if (!passwordMatch) throw new AppError("Senha inválida", 403);
 
-  const addressId = Number(user?.address?.id);
-
-  await prismaClient.address.delete({
-    where: { id: addressId },
-  });
-
   await prismaClient.user.delete({
     where: { id },
   });
 };
 
 export { deleteUserService };
+''
